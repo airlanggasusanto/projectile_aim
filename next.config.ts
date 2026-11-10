@@ -1,16 +1,16 @@
 import type { NextConfig } from "next";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
+  output: "export",
+  
+  basePath: isProduction ? "/projectile_aim" : "",
+
+  allowedDevOrigins: ["192.168.1.5"],
+
+  images: {
+    unoptimized: true, // Required for next/image to work with static exports
   },
 };
 
